@@ -1,7 +1,24 @@
 import Link from "next/link";
 import { ApiResponseSingleProduct } from "@/features/products/api.types";
+import { Product } from "@/features/products/product.types";
 
 const API_URL = "https://v2.api.noroff.dev/online-shop";
+
+async function getProduct(id: string): Promise<ApiResponseSingleProduct> {
+  const response = await fetch(`${API_URL}/${id}`, {
+    cache: "no-store",
+  });
+
+  //   if (response.status === 404) {
+  //     return <p>Product with ID "{id}" was not found.</p>;
+  //   }
+
+  if (!response.ok) {
+    throw new Error(`Kunne ikke hente produkt med id: ${id}`);
+  }
+
+  return response.json();
+}
 
 // This page is also a Server Component and can be async
 export default async function SingleProductPage({
@@ -9,22 +26,9 @@ export default async function SingleProductPage({
 }: {
   params: { id: string };
 }) {
-  const productId = params.id;
-
-  const response = await fetch(`${API_URL}/${productId}`, {
-    next: { revalidate: 3600 }, // Cache and revalidate every hour
-  });
-
-  if (!response.ok) {
-    if (response.status === 404) {
-      return <p>Product with ID "{productId}" was not found.</p>;
-    }
-    console.error(`Failed to fetch product ${productId}:`, response.statusText);
-    return <p>Could not fetch the product. Please try again later.</p>;
-  }
-
-  const result: ApiResponseSingleProduct = await response.json();
-  const product = result.data;
+  const { id } = await params;
+  const result: ApiResponseSingleProduct = await getProduct(id);
+  const product: Product = result.data;
 
   if (!product) {
     return <p>Product data is not available.</p>;
@@ -36,6 +40,7 @@ export default async function SingleProductPage({
         &larr; Back to all products
       </Link>
       <h1>{product.title}</h1>
+      <p>{product.description}</p>
       <img
         src={product.image.url}
         alt={product.image.alt || product.title}

@@ -1,23 +1,26 @@
 import Link from "next/link"; // For linking to individual game pages later
 import { ApiResponseAllProducts } from "@/features/products/api.types";
+import { Product } from "@/features/products/product.types";
 
 const API_URL = "https://v2.api.noroff.dev/online-shop"; // Define the API URL as a constant
+
+async function getAllProducts(): Promise<ApiResponseAllProducts> {
+  const res = await fetch(API_URL, {
+    next: { revalidate: 3600 }, // Revalidate cached data every 3600 seconds (1 hour)
+  });
+
+  if (!res.ok) {
+    throw new Error("Could not fetch products.");
+  }
+
+  return res.json();
+}
 
 // Make the component async to use await for fetching
 export default async function ProductsPage() {
   // Fetch data directly in the Server Component
-  const response = await fetch(API_URL);
-
-  if (!response.ok) {
-    // Handle errors, e.g., by throwing an error or returning an error message
-    // For now, we'll log and show a simple message.
-    // In a real app, you'd use an error.tsx file or more robust error handling.
-    console.error("Failed to fetch games:", response.statusText);
-    return <p>Could not fetch products. Please try again later.</p>;
-  }
-
-  const result: ApiResponseAllProducts = await response.json();
-  const products = result.data;
+  const result: ApiResponseAllProducts = await getAllProducts();
+  const products: Product[] = result.data;
 
   return (
     <div>
@@ -35,7 +38,6 @@ export default async function ProductsPage() {
               }}
             >
               <h2>{product.title}</h2>
-              <p>{product.description}</p>
               <h3>
                 {product.price} NOK, Discounted: {product.discountedPrice} NOK
               </h3>
