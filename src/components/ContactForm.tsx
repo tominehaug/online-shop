@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   ContactFormSchema,
   type ContactFormData,
-} from "@/app/features/contact/contactSchema";
+} from "@/features/contact/contact.schema";
 import { useRouter } from "next/navigation";
 
 export default function ContactForm() {
