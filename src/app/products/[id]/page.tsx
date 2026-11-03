@@ -5,19 +5,33 @@ import { Product } from "@/features/products/product.types";
 const API_URL = "https://v2.api.noroff.dev/online-shop";
 
 async function getProduct(id: string): Promise<ApiResponseSingleProduct> {
-  const response = await fetch(`${API_URL}/${id}`, {
+  const res = await fetch(`${API_URL}/${id}`, {
     cache: "no-store",
   });
 
-  //   if (response.status === 404) {
-  //     return <p>Product with ID "{id}" was not found.</p>;
-  //   }
+  if (!res.ok) {
+    let errorMessage = `Could not fetch product with ID: ${id}`;
 
-  if (!response.ok) {
-    throw new Error(`Kunne ikke hente produkt med id: ${id}`);
+    if (res.status === 404) {
+      errorMessage = `Product not found (404).`;
+    } else {
+      try {
+        const errorData = await res.json();
+        if (
+          errorData.errors &&
+          errorData.errors[0] &&
+          errorData.errors[0].message
+        ) {
+          errorMessage = errorData.errors[0].message;
+        }
+      } catch {
+        errorMessage = `${errorMessage} ${res.statusText}`;
+      }
+    }
+    throw new Error(errorMessage);
   }
 
-  return response.json();
+  return res.json();
 }
 
 // This page is also a Server Component and can be async

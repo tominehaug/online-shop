@@ -6,19 +6,34 @@ const API_URL = "https://v2.api.noroff.dev/online-shop"; // Define the API URL a
 
 async function getAllProducts(): Promise<ApiResponseAllProducts> {
   const res = await fetch(API_URL, {
-    next: { revalidate: 3600 }, // Revalidate cached data every 3600 seconds (1 hour)
+    next: { revalidate: 3600 },
   });
 
   if (!res.ok) {
-    throw new Error("Could not fetch products.");
-  }
+    let errorMessage = `Could not fetch products. Status: ${res.status}`;
 
+    if (res.status === 404) {
+      errorMessage = "Products not found (404).";
+    } else {
+      try {
+        const errorData = await res.json();
+        if (
+          errorData.errors &&
+          errorData.errors[0] &&
+          errorData.errors[0].message
+        ) {
+          errorMessage = errorData.errors[0].message;
+        }
+      } catch {
+        errorMessage = `${errorMessage} ${res.statusText}`;
+      }
+    }
+    throw new Error(errorMessage);
+  }
   return res.json();
 }
 
-// Make the component async to use await for fetching
 export default async function ProductsPage() {
-  // Fetch data directly in the Server Component
   const result: ApiResponseAllProducts = await getAllProducts();
   const products: Product[] = result.data;
 
