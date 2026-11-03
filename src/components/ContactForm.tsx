@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useForm, type FieldErrors } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -10,6 +11,7 @@ import { useRouter } from "next/navigation";
 
 export default function ContactForm() {
   const router = useRouter();
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
@@ -26,13 +28,37 @@ export default function ContactForm() {
     resolver: zodResolver(ContactFormSchema),
   });
 
-  const onSubmit = (data: ContactFormData) => {
-    console.log("Contact form data:", data);
-    alert(
-      `Thank you, ${data.fullName}! Your message about ${data.subject} has been registered.`,
-    );
-    reset();
-    router.push("/takk"); //fikse denne hvis jeg vil ha en takk-side etter submit
+  const onSubmit = async (data: ContactFormData) => {
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        throw new Error(responseData.error || "Failed to submit contact form");
+      }
+
+      sessionStorage.setItem(
+        "confirmationMessage",
+        responseData.message || "Your message has been sent successfully.",
+      );
+
+      reset();
+      router.push("/confirmation");
+    } catch (error) {
+      setSubmitError(
+        error instanceof Error
+          ? error.message
+          : "Failed to submit contact form",
+      );
+      console.error("Error submitting contact form:", error);
+    }
   };
 
   const onError = (formErrors: FieldErrors<ContactFormData>) => {
@@ -132,6 +158,11 @@ export default function ContactForm() {
       <button type="submit" disabled={isSubmitting}>
         {isSubmitting ? "Sending..." : "Send"}
       </button>
+      {submitError && (
+        <p role="alert" style={{ color: "red" }}>
+          {submitError}
+        </p>
+      )}
     </form>
   );
 }
