@@ -13,7 +13,7 @@ async function getProduct(id: string): Promise<ApiResponseSingleProduct> {
     let errorMessage = `Could not fetch product with ID: ${id}`;
 
     if (res.status === 404) {
-      errorMessage = `Product not found (404).`;
+      errorMessage = "Product not found (404).";
     } else {
       try {
         const errorData = await res.json();
@@ -34,18 +34,28 @@ async function getProduct(id: string): Promise<ApiResponseSingleProduct> {
   return res.json();
 }
 
-// This page is also a Server Component and can be async
 export default async function SingleProductPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const result: ApiResponseSingleProduct = await getProduct(id);
-  const product: Product = result.data;
+  let product: Product;
 
-  if (!product) {
-    return <p>Product data is not available.</p>;
+  try {
+    const result: ApiResponseSingleProduct = await getProduct(id);
+    product = result.data;
+  } catch (error) {
+    console.error(`Error fetching product with ID: ${id}`, error);
+    const errorMessage =
+      error instanceof Error ? error.message : "Error fetching product data.";
+    return (
+      <div>
+        <h2>Something went wrong</h2>
+        <p>Error: {errorMessage}</p>
+        <Link href="/products">&larr; Back to all products</Link>
+      </div>
+    );
   }
 
   return (
