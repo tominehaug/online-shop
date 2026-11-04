@@ -34,8 +34,23 @@ async function getAllProducts(): Promise<ApiResponseAllProducts> {
 }
 
 export default async function ProductsPage() {
-  const result: ApiResponseAllProducts = await getAllProducts();
-  const products: Product[] = result.data;
+  let products: Product[] = [];
+  try {
+    const result: ApiResponseAllProducts = await getAllProducts();
+    products = result.data;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    const errorMessage =
+      error instanceof Error ? error.message : "Error fetching products.";
+    return (
+      <div>
+        <h2>Something went wrong</h2>
+        <p>Error: {errorMessage}</p>
+        <Link href="/products">&larr; Try again</Link>
+        <Link href="/">&larr; Return to home</Link>
+      </div>
+    );
+  }
 
   return (
     <div>
