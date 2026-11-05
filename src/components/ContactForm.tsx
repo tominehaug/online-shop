@@ -76,8 +76,6 @@ export default function ContactForm() {
         maxWidth: "400px",
       }}
     >
-      <h1>Contact us</h1>
-
       <div>
         <label htmlFor="fullName">Full name:</label>
         <input
