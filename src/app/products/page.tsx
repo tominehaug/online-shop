@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ApiResponseAllProducts } from "@/features/products/api.types";
 import { Product } from "@/features/products/product.types";
+import ProductSearch from "@/components/SearchProduct";
 
 const API_URL = "https://v2.api.noroff.dev/online-shop";
 
@@ -55,36 +56,7 @@ export default async function ProductsPage() {
 
   return (
     <div>
-      <h1>All products</h1>
-
-      {products && products.length > 0 ? (
-        <ul style={{ listStyle: "none", padding: 0 }}>
-          {products.map((product) => (
-            <li
-              key={product.id}
-              style={{
-                marginBottom: "20px",
-                border: "1px solid #ccc",
-                padding: "10px",
-              }}
-            >
-              <h2>{product.title}</h2>
-              <h3>
-                {product.price} NOK, Discounted: {product.discountedPrice} NOK
-              </h3>
-              <Image
-                src={product.image.url}
-                alt={product.image.alt || product.title}
-                fill
-                style={{ objectFit: "cover", maxWidth: "200px" }}
-              />
-              <Link href={`/products/${product.id}`}>See details</Link>{" "}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>Ingen produkter funnet.</p>
-      )}
+      <ProductSearch products={products} />
     </div>
   );
 }
