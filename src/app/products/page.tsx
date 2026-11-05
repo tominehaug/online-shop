@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ApiResponseAllProducts } from "@/features/products/api.types";
 import { Product } from "@/features/products/product.types";
 import ProductSearch from "@/components/SearchProduct";
