@@ -1,47 +1,49 @@
 "use client";
-import { useState, useEffect } from "react";
+import { Product } from "@/features/products/product.types";
+import ProductCard from "@/components/ProductCard";
+import { useState, useMemo } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
-interface SearchResult {
-  id: string;
-  title: string;
-}
+export default function ProductSearch({ products }: { products: Product[] }) {
+  const [searchTerm, setSearchTerm] = useState("");
 
-export default function ClientSideSearch() {
-  const [query, setQuery] = useState("");
-  const [results, setResults] = useState<SearchResult[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    if (query.trim() === "") {
-      setResults([]);
-      return;
+  const searchedProducts = useMemo(() => {
+    if (!searchTerm.trim()) {
+      return products;
     }
-
-    const fetchResults = async () => {
-      // fetching logic goes here
-
-      setIsLoading(true);
-
-      setResults(results);
-      setIsLoading(false);
-    };
-  }, [query]);
+    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+    return products.filter((product) =>
+      product.title.toLowerCase().includes(lowerCaseSearchTerm),
+    );
+  }, [products, searchTerm]);
 
   return (
     <div>
+      <label htmlFor="productSearchInput">Search: </label>
       <input
-        type="search"
-        placeholder="Search here..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        style={{ padding: "8px", width: "300px" }}
+        type="text"
+        id="productSearchInput"
+        placeholder="Enter product name..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        style={{ marginBottom: "20px", padding: "8px", width: "300px" }}
       />
-      {isLoading && <p>Loading search results...</p>}
-      <ul>
-        {results.map((result) => (
-          <li key={result.id}>{result.title}</li>
-        ))}
-      </ul>
+
+      {searchedProducts.length > 0 ? (
+        <ul style={{ listStyle: "none", padding: 0 }}>
+          {searchTerm === "" ? (
+            <h2>All products</h2>
+          ) : (
+            <h2>Search results: {searchTerm}</h2>
+          )}
+          {searchedProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </ul>
+      ) : (
+        <p>No products match your search: {searchTerm}</p>
+      )}
     </div>
   );
 }
