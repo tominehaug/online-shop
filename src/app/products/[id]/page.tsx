@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ApiResponseSingleProduct } from "@/features/products/api.types";
 import { Product } from "@/features/products/product.types";
 
@@ -65,10 +66,16 @@ export default async function SingleProductPage({
       </Link>
       <h1>{product.title}</h1>
       <p>{product.description}</p>
-      <img
+      <Image
         src={product.image.url}
         alt={product.image.alt || product.title}
-        style={{ maxWidth: "400px", height: "auto", marginBottom: "20px" }}
+        fill
+        style={{
+          objectFit: "cover",
+          maxWidth: "400px",
+          height: "auto",
+          marginBottom: "20px",
+        }}
       />
       <p>
         <strong>Tags:</strong> {product.tags.join(", ")}

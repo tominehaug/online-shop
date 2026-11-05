@@ -1,8 +1,9 @@
-import Link from "next/link"; // For linking to individual game pages later
+import Link from "next/link";
+import Image from "next/image";
 import { ApiResponseAllProducts } from "@/features/products/api.types";
 import { Product } from "@/features/products/product.types";
 
-const API_URL = "https://v2.api.noroff.dev/online-shop"; // Define the API URL as a constant
+const API_URL = "https://v2.api.noroff.dev/online-shop";
 
 async function getAllProducts(): Promise<ApiResponseAllProducts> {
   const res = await fetch(API_URL, {
@@ -71,10 +72,11 @@ export default async function ProductsPage() {
               <h3>
                 {product.price} NOK, Discounted: {product.discountedPrice} NOK
               </h3>
-              <img
+              <Image
                 src={product.image.url}
                 alt={product.image.alt || product.title}
-                style={{ maxWidth: "200px", height: "auto" }}
+                fill
+                style={{ objectFit: "cover", maxWidth: "200px" }}
               />
               <Link href={`/products/${product.id}`}>See details</Link>{" "}
             </li>
