@@ -1,1 +1,5 @@
-export default function ConfirmationPage() {}
+import ConfirmationMessage from "@/components/Confirmation";
+
+export default function ConfirmationPage() {
+  return <ConfirmationMessage />;
+}
