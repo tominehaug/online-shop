@@ -2,8 +2,6 @@
 import { Product } from "@/features/products/product.types";
 import ProductCard from "@/components/ProductCard";
 import { useState, useMemo } from "react";
-import Link from "next/link";
-import Image from "next/image";
 
 export default function ProductSearch({ products }: { products: Product[] }) {
   const [searchTerm, setSearchTerm] = useState("");
