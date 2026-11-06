@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { ApiResponseSingleProduct } from "@/features/products/api.types";
 import { Product } from "@/features/products/product.types";
+import ProductDetailsCard from "@/components/ProductDetailsCard";
+import ReviewSection from "@/components/ReviewSection";
 
 const API_URL = "https://v2.api.noroff.dev/online-shop";
 
@@ -64,8 +66,6 @@ export default async function SingleProductPage({
       <Link href="/products" style={{ display: "block", marginBottom: "20px" }}>
         &larr; Back to all products
       </Link>
-      <h1>{product.title}</h1>
-      <p>{product.description}</p>
       <Image
         src={product.image.url}
         alt={product.image.alt || product.title}
@@ -77,15 +77,8 @@ export default async function SingleProductPage({
           marginBottom: "20px",
         }}
       />
-      <p>
-        <strong>Tags:</strong> {product.tags.join(", ")}
-      </p>
-      <p>
-        <strong>Rating:</strong> {product.rating}
-      </p>
-      <p>
-        <strong>Reviews:</strong> {product.reviews.length}
-      </p>
+      <ProductDetailsCard product={product} />
+      <ReviewSection review={product.reviews} />
     </div>
   );
 }
