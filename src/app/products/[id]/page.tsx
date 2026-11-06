@@ -66,17 +66,15 @@ export default async function SingleProductPage({
       <Link href="/products" style={{ display: "block", marginBottom: "20px" }}>
         &larr; Back to all products
       </Link>
-      <Image
-        src={product.image.url}
-        alt={product.image.alt || product.title}
-        fill
-        style={{
-          objectFit: "cover",
-          maxWidth: "400px",
-          height: "auto",
-          marginBottom: "20px",
-        }}
-      />
+      <div style={{ position: "relative", width: "200px", height: "200px" }}>
+        <Image
+          src={product.image.url}
+          alt={product.image.alt || product.title}
+          fill
+          sizes="200px"
+          style={{ objectFit: "cover" }}
+        />
+      </div>
       <ProductDetailsCard product={product} />
       <ReviewSection review={product.reviews} />
     </div>

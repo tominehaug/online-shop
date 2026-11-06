@@ -10,15 +10,6 @@ export default function ProductDetailsCard({ product }: { product: Product }) {
         padding: "10px",
       }}
     >
-      <div style={{ position: "relative", width: "200px", height: "200px" }}>
-        <Image
-          src={product.image.url}
-          alt={product.image.alt || product.title}
-          fill
-          sizes="200px"
-          style={{ objectFit: "cover" }}
-        />
-      </div>
       <h2>{product.title}</h2>
       <h3>
         {product.price} NOK, Discounted: {product.discountedPrice} NOK
