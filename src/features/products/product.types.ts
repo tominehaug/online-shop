@@ -21,3 +21,12 @@ export interface Product {
   tags: string[];
   reviews: Review[];
 }
+
+export interface CartProduct {
+  id: string;
+  title: string;
+  price: number;
+  discountedPrice: number;
+  image: ProductImage;
+  quantity: number;
+}
