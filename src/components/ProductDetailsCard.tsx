@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Product } from "@/features/products/product.types";
 
 export default function ProductDetailsCard({ product }: { product: Product }) {
