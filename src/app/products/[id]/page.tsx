@@ -4,6 +4,7 @@ import { ApiResponseSingleProduct } from "@/features/products/api.types";
 import { Product } from "@/features/products/product.types";
 import ProductDetailsCard from "@/components/ProductDetailsCard";
 import ReviewSection from "@/components/ReviewSection";
+import AddToCartButton from "@/components/AddToCartButton";
 
 const API_URL = "https://v2.api.noroff.dev/online-shop";
 
@@ -77,6 +78,7 @@ export default async function SingleProductPage({
       </div>
       <ProductDetailsCard product={product} />
       <ReviewSection review={product.reviews} />
+      <AddToCartButton product={product} />
     </div>
   );
 }
