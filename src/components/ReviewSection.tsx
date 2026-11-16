@@ -13,7 +13,7 @@ export default function ReviewSection({ review }: { review: Review[] }) {
           }}
         >
           <h3>{review.username}</h3>
-          <p>Rating: {review.rating}/5</p>
+          <p>Rating: {review.rating}/5★</p>
           <p>{review.description}</p>
         </li>
       ))}
