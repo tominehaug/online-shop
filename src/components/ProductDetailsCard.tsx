@@ -1,4 +1,5 @@
 import { Product } from "@/features/products/product.types";
+import ProductPrice from "./ProductPrice";
 
 export default function ProductDetailsCard({ product }: { product: Product }) {
   return (
@@ -10,19 +11,20 @@ export default function ProductDetailsCard({ product }: { product: Product }) {
       }}
     >
       <h2>{product.title}</h2>
-      <h3>
-        {product.price} NOK, Discounted: {product.discountedPrice} NOK
-      </h3>
+      <ProductPrice
+        price={product.price}
+        discountedPrice={product.discountedPrice}
+      />
       <p>
-        <strong>Rating:</strong>
-        {product.rating}/5
+        <strong>Rating: </strong>
+        {product.rating}/5★
       </p>
       <p>
-        <strong>Description:</strong>
+        <strong>Description: </strong>
         {product.description}
       </p>
       <p>
-        <strong>Tags:</strong>
+        <strong>Tags: </strong>
         {product.tags.join(", ")}
       </p>
     </li>

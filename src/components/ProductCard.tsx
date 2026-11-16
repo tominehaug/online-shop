@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Product } from "@/features/products/product.types";
+import ProductPrice from "@/components/ProductPrice";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
@@ -12,10 +13,6 @@ export default function ProductCard({ product }: { product: Product }) {
       }}
     >
       <Link href={`/products/${product.id}`}>
-        <h2>{product.title}</h2>
-        <h3>
-          {product.price} NOK, Discounted: {product.discountedPrice} NOK
-        </h3>
         <div style={{ position: "relative", width: "200px", height: "200px" }}>
           <Image
             src={product.image.url}
@@ -25,6 +22,12 @@ export default function ProductCard({ product }: { product: Product }) {
             style={{ objectFit: "cover" }}
           />
         </div>
+        <h2>{product.title}</h2>
+        <ProductPrice
+          price={product.price}
+          discountedPrice={product.discountedPrice}
+        />
+        <p>{product.rating}/5 ★</p>
       </Link>
     </li>
   );
