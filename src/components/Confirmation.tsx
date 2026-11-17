@@ -6,17 +6,11 @@ export default function ConfirmationMessage() {
 
   useEffect(() => {
     const confirmationMessage = sessionStorage.getItem("confirmationMessage");
-    setMessage(confirmationMessage);
-    sessionStorage.removeItem("confirmationMessage");
+    if (confirmationMessage) {
+      setMessage(confirmationMessage);
+      sessionStorage.removeItem("confirmationMessage");
+    }
   }, []);
 
-  return (
-    <div>
-      {message ? (
-        <p>{message}</p>
-      ) : (
-        <p>Your message has been sent successfully.</p>
-      )}
-    </div>
-  );
+  return <div>{message ? <p>{message}</p> : <p>Thank you!</p>}</div>;
 }
