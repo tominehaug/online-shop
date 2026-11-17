@@ -7,9 +7,10 @@ export default function CheckoutButton() {
   const reset = useCartStore((state) => state.clearCart);
 
   const handleCheckout = () => {
+    const orderNumber = Math.floor(Math.random() * 900000);
     sessionStorage.setItem(
       "confirmationMessage",
-      "Your order has been sent successfully.",
+      `Your order (${orderNumber}) has been sent successfully.`,
     );
     reset();
     router.push("/confirmation");
