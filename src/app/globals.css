@@ -5,6 +5,7 @@
   --foreground: #000;
   --accent: #efb11d;
   --brand: #e43d12;
+  --softbrand: #ea8a72;
 }
 
 @theme inline {
@@ -12,6 +13,7 @@
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
   --color-brand: var(--brand);
+  --color-softbrand: var(--softbrand);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -25,5 +27,11 @@
   50% {
     transform: none;
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }
