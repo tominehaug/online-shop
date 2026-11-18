@@ -54,7 +54,7 @@ export default async function ProductsPage() {
   }
 
   return (
-    <div>
+    <div className="mx-auto block lg:mt-8">
       <ProductSearch products={products} />
     </div>
   );

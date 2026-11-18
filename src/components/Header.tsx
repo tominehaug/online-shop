@@ -8,7 +8,7 @@ export default function Header() {
   const pathname = usePathname();
   return (
     <header className="bg-background p-4 mb-1 text-brand lg:text-xl text-3xl lg:mx-4">
-      <nav className="flex flex-col gap-4 lg:flex-row w-full">
+      <nav className="flex flex-col gap-4 lg:flex-row w-full lg:items-center">
         <div className="flex flex-row justify-between align-center w-full lg:justify-start lg:gap-4">
           <Link href="/">
             <Image
