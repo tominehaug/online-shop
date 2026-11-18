@@ -44,9 +44,11 @@ export default async function ProductsPage() {
     const errorMessage =
       error instanceof Error ? error.message : "Error fetching products.";
     return (
-      <div>
-        <h2>Something went wrong</h2>
-        <p>Error: {errorMessage}</p>
+      <div className="p-4">
+        <h2 className="text-2xl">Something went wrong</h2>
+        <p>
+          <strong>Error:</strong> {errorMessage}
+        </p>
         <Link href="/products">&larr; Try again</Link>
         <Link href="/">&larr; Return to home</Link>
       </div>

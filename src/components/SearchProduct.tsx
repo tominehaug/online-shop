@@ -30,7 +30,7 @@ export default function ProductSearch({ products }: { products: Product[] }) {
           placeholder="Enter product name..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="p-2 border border-brand flex-1 lg:max-w-md focus:outline-brand focus:outline-2"
+          className="p-2 border-2 border-softbrand flex-1 focus:outline-brand focus:outline-2 focus:border-background"
         />
         <div className="text-brand text-2xl">
           <FontAwesomeIcon icon={faMagnifyingGlass} />
