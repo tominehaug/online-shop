@@ -65,24 +65,28 @@ export default async function SingleProductPage({
   }
 
   return (
-    <div>
+    <div className="max-w-xl mx-auto block lg:max-w-4xl">
       <Link href="/products" className="block m-4">
         &larr; All products
       </Link>
-      <div className="relative w-full aspect-square lg:w-48 lg:self-start lg:shrink-0">
-        <Image
-          src={product.image.url}
-          alt={product.image.alt || product.title}
-          fill
-          sizes="(min-width: 1024px) 192px, 100vw"
-          className="object-cover"
-        />
-      </div>
-      <ProductDetailsCard product={product} />
-      <AddToCartButton product={product} />
-      <div>
-        <h2 className="text-xl font-bold p-4">Reviews:</h2>
-        <ReviewSection review={product.reviews} />
+      <div className="lg:flex lg:flex-row lg:flex-wrap lg:gap-4">
+        <div className="relative w-full aspect-square lg:w-md lg:self-start lg:shrink-0 lg:ml-4 lg:grow-0">
+          <Image
+            src={product.image.url}
+            alt={product.image.alt || product.title}
+            fill
+            sizes="(min-width: 1024px) 192px, 100vw"
+            className="object-cover"
+          />
+        </div>
+        <div className="lg:grow lg:basis-55">
+          <ProductDetailsCard product={product} />
+          <AddToCartButton product={product} />
+        </div>
+        <div className="lg:grow lg:basis-55">
+          <h2 className="text-xl font-bold p-4">Reviews:</h2>
+          <ReviewSection review={product.reviews} />
+        </div>
       </div>
     </div>
   );

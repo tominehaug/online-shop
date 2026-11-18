@@ -13,14 +13,14 @@ export default function AddToCartButton({ product }: { product: Product }) {
     setTimeout(() => setAdded(false), 3000);
   };
   return (
-    <div>
+    <div className="text-center">
       <button
         onClick={handleAddToCart}
         className="p-5 bg-brand text-background font-bold w-full text-2xl"
       >
         Add to Cart
       </button>
-      {added && <p>Your item was added to the cart!</p>}
+      {added && <p className="mt-3">Your item was added to the cart!</p>}
     </div>
   );
 }
