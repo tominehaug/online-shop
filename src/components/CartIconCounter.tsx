@@ -16,14 +16,15 @@ export default function CartIconCounter() {
       <span
         style={{
           position: "absolute",
-          top: "-8px",
-          right: "-8px",
+          top: "-6px",
+          right: "-6px",
           minWidth: "20px",
           height: "20px",
           padding: "0 4px",
-          borderRadius: "9px",
+          borderRadius: "10px",
           backgroundColor: "#ef3d12",
           color: "white",
+          lineHeight: "1.4",
           fontSize: "14px",
           textAlign: "center",
         }}
