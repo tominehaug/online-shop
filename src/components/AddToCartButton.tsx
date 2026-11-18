@@ -14,7 +14,12 @@ export default function AddToCartButton({ product }: { product: Product }) {
   };
   return (
     <div>
-      <button onClick={handleAddToCart}>Add to Cart</button>
+      <button
+        onClick={handleAddToCart}
+        className="p-5 bg-brand text-background font-bold w-full text-2xl"
+      >
+        Add to Cart
+      </button>
       {added && <p>Your item was added to the cart!</p>}
     </div>
   );

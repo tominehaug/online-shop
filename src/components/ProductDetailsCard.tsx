@@ -3,19 +3,13 @@ import ProductPrice from "./ProductPrice";
 
 export default function ProductDetailsCard({ product }: { product: Product }) {
   return (
-    <li
-      style={{
-        marginBottom: "20px",
-        border: "1px solid #ccc",
-        padding: "10px",
-      }}
-    >
-      <h2>{product.title}</h2>
+    <li className="p-4">
+      <h2 className="text-2xl">{product.title}</h2>
       <ProductPrice
         price={product.price}
         discountedPrice={product.discountedPrice}
       />
-      <p>
+      <p className="mt-5">
         <strong>Rating: </strong>
         {product.rating}/5★
       </p>

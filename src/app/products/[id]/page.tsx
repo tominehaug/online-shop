@@ -54,9 +54,11 @@ export default async function SingleProductPage({
     const errorMessage =
       error instanceof Error ? error.message : "Error fetching product data.";
     return (
-      <div>
-        <h2>Something went wrong</h2>
-        <p>Error: {errorMessage}</p>
+      <div className="p-4">
+        <h2 className="text-2xl">Something went wrong</h2>
+        <p>
+          <strong>Error:</strong> {errorMessage}
+        </p>
         <Link href="/products">&larr; Back to all products</Link>
       </div>
     );
@@ -64,21 +66,24 @@ export default async function SingleProductPage({
 
   return (
     <div>
-      <Link href="/products" style={{ display: "block", marginBottom: "20px" }}>
-        &larr; Back to all products
+      <Link href="/products" className="block m-4">
+        &larr; All products
       </Link>
-      <div style={{ position: "relative", width: "200px", height: "200px" }}>
+      <div className="relative w-full aspect-square lg:w-48 lg:self-start lg:shrink-0">
         <Image
           src={product.image.url}
           alt={product.image.alt || product.title}
           fill
-          sizes="200px"
-          style={{ objectFit: "cover" }}
+          sizes="(min-width: 1024px) 192px, 100vw"
+          className="object-cover"
         />
       </div>
       <ProductDetailsCard product={product} />
-      <ReviewSection review={product.reviews} />
       <AddToCartButton product={product} />
+      <div>
+        <h2 className="text-xl font-bold p-4">Reviews:</h2>
+        <ReviewSection review={product.reviews} />
+      </div>
     </div>
   );
 }
