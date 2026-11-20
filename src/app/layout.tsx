@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -30,7 +31,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background">
-        <Header />
+        <Suspense>
+          <Header />
+        </Suspense>
         <main className="flex flex-col flex-1">{children}</main>
         <footer className="border-t-accent border-t-2 text-center p-4 w-full bg-background">
           <p>&copy; 2026 Tretten Online Store</p>
