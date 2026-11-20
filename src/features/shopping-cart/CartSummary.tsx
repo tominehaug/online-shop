@@ -17,7 +17,7 @@ function CartSummary() {
         paddingTop: "10px",
       }}
     >
-      <h3>Summary</h3>
+      <h3 className="text-xl font-semibold">Summary</h3>
       <p>
         Total items in the cart: <strong>{totalItems}</strong>
       </p>

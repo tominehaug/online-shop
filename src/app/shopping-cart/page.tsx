@@ -4,8 +4,8 @@ import CheckoutButton from "@/components/CheckoutButton";
 
 export default function ShoppingCartPage() {
   return (
-    <div>
-      <h1>Shopping Cart</h1>
+    <div className="mx-4">
+      <h1 className="text-xl font-semibold">Shopping Cart</h1>
       <CartDisplay />
       <CartSummary />
       <CheckoutButton />
