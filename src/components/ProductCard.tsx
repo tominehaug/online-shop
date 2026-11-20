@@ -20,7 +20,7 @@ export default function ProductCard({ product }: { product: Product }) {
             />
           </div>
           <div>
-            <h2 className="text-2xl my-2 font-bold">{product.title}</h2>
+            <h2 className="text-2xl my-2 font-semibold">{product.title}</h2>
             <ProductPrice
               price={product.price}
               discountedPrice={product.discountedPrice}

@@ -23,7 +23,7 @@ export default function ProductSearch({ products }: { products: Product[] }) {
       <label htmlFor="productSearchInput" className="hidden">
         Search:{" "}
       </label>
-      <div className="w-full flex flex-row gap-2 items-center mb-4">
+      <div className="w-full min-w-sm flex flex-row gap-2 items-center mb-4">
         <input
           type="text"
           id="productSearchInput"
