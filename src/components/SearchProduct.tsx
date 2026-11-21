@@ -37,9 +37,13 @@ export default function ProductSearch({ products }: { products: Product[] }) {
         </div>
       </div>
       {searchTerm === "" ? (
-        <h2 className="text-xl font-bold mb-2">All products</h2>
+        <h2 className="text-3xl font-heading mb-2 tracking-wider">
+          All products
+        </h2>
       ) : (
-        <h2 className="text-xl font-bold mb-2">Search results: {searchTerm}</h2>
+        <h2 className="text-3xl font-heading mb-2 tracking-wider">
+          Search results: {searchTerm}
+        </h2>
       )}
       {searchedProducts.length > 0 ? (
         <ul className="grid grid-cols-1 gap-4 lg:grid-cols-2">

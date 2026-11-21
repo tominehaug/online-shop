@@ -8,7 +8,7 @@ export default function ShoppingCartPage() {
     <div className="sm:w-xl md:w-2xl sm:block sm:mx-auto mb-10 md:mt-10">
       <div className="mx-4 mb-5">
         <BackButton />
-        <h1 className="text-xl font-semibold uppercase">Shopping Cart</h1>
+        <h1 className="text-4xl uppercase font-heading">Shopping Cart</h1>
         <CartDisplay />
         <CartSummary />
       </div>

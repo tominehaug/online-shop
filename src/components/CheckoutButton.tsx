@@ -18,7 +18,7 @@ export default function CheckoutButton() {
   return (
     <button
       onClick={handleCheckout}
-      className="p-5 bg-brand text-background font-bold w-full text-2xl text-center"
+      className="p-5 bg-brand text-background font-heading tracking-wider w-full text-4xl text-center"
     >
       Checkout
     </button>

@@ -84,7 +84,7 @@ export default async function SingleProductPage({
           <AddToCartButton product={product} />
         </div>
         <div className="lg:grow lg:basis-55">
-          <h2 className="text-xl font-bold p-4">Reviews:</h2>
+          <h2 className="p-4 text-2xl font-heading tracking-wider">Reviews:</h2>
           <ReviewSection review={product.reviews} />
         </div>
       </div>

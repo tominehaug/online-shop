@@ -16,7 +16,7 @@ export default function AddToCartButton({ product }: { product: Product }) {
     <div className="text-center">
       <button
         onClick={handleAddToCart}
-        className="p-5 bg-brand text-background font-bold w-full text-2xl"
+        className="p-5 bg-brand text-background font-heading w-full text-4xl tracking-wider"
       >
         Add to Cart
       </button>

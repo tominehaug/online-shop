@@ -13,7 +13,7 @@ export default function ConfirmationMessage() {
   }, []);
 
   return (
-    <div className="text-2xl">
+    <div className="text-2xl text-center my-4">
       {message ? <h1>{message}</h1> : <h1>Thank you!</h1>}
     </div>
   );

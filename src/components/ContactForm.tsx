@@ -126,7 +126,7 @@ export default function ContactForm() {
         )}
       </div>
 
-      <div className="flex flex-col mx-4">
+      <div className="flex flex-col mx-4 mb-4">
         <label htmlFor="message" className="text-lg">
           Message
         </label>
