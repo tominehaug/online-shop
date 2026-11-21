@@ -12,5 +12,9 @@ export default function ConfirmationMessage() {
     }
   }, []);
 
-  return <div>{message ? <p>{message}</p> : <p>Thank you!</p>}</div>;
+  return (
+    <div className="text-2xl">
+      {message ? <h1>{message}</h1> : <h1>Thank you!</h1>}
+    </div>
+  );
 }
