@@ -69,95 +69,90 @@ export default function ContactForm() {
     <form
       noValidate
       onSubmit={handleSubmit(onSubmit, onError)}
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "10px",
-        maxWidth: "400px",
-      }}
+      className="flex flex-col gap-4 mt-4"
     >
-      <div>
-        <label htmlFor="fullName">Full name:</label>
+      <div className="flex flex-col mx-4">
+        <label htmlFor="fullName" className="text-lg">
+          Full name
+        </label>
         <input
           id="fullName"
           {...register("fullName")}
           aria-invalid={errors.fullName ? "true" : "false"}
           aria-describedby={errors.fullName ? "fullName-error" : undefined}
+          className="p-2 border-2 border-softbrand flex-1 focus:outline-brand focus:outline-1 focus:border-brand"
         />
         {errors.fullName && (
-          <p
-            id="fullName-error"
-            role="alert"
-            style={{ color: "red", fontSize: "0.9em", margin: "0" }}
-          >
+          <p id="fullName-error" role="alert" className="text-brand m-0">
             {errors.fullName.message}
           </p>
         )}
       </div>
 
-      <div>
-        <label htmlFor="subject">Subject:</label>
+      <div className="flex flex-col mx-4">
+        <label htmlFor="subject" className="text-lg">
+          Subject
+        </label>
         <input
           id="subject"
           {...register("subject")}
           aria-invalid={errors.subject ? "true" : "false"}
           aria-describedby={errors.subject ? "subject-error" : undefined}
+          className="p-2 border-2 border-softbrand flex-1 focus:outline-brand focus:outline-1 focus:border-brand"
         ></input>
         {errors.subject && (
-          <p
-            id="subject-error"
-            role="alert"
-            style={{ color: "red", fontSize: "0.9em", margin: "0" }}
-          >
+          <p id="subject-error" role="alert" className="text-brand m-0">
             {errors.subject.message}
           </p>
         )}
       </div>
 
-      <div>
-        <label htmlFor="email">Email:</label>
+      <div className="flex flex-col mx-4">
+        <label htmlFor="email" className="text-lg">
+          Email
+        </label>
         <input
           id="email"
           type="email"
           {...register("email")}
           aria-invalid={errors.email ? "true" : "false"}
           aria-describedby={errors.email ? "email-error" : undefined}
+          className="p-2 border-2 border-softbrand flex-1 focus:outline-brand focus:outline-1 focus:border-brand"
         />
         {errors.email && (
-          <p
-            id="email-error"
-            role="alert"
-            style={{ color: "red", fontSize: "0.9em", margin: "0" }}
-          >
+          <p id="email-error" role="alert" className="text-brand m-0">
             {errors.email.message}
           </p>
         )}
       </div>
 
-      <div>
-        <label htmlFor="message">Message:</label>
+      <div className="flex flex-col mx-4">
+        <label htmlFor="message" className="text-lg">
+          Message
+        </label>
         <textarea
           id="message"
           {...register("message")}
           aria-invalid={errors.message ? "true" : "false"}
           aria-describedby={errors.message ? "message-error" : undefined}
+          className="p-2 border-2 border-softbrand flex-1 focus:outline-brand focus:outline-1 focus:border-brand"
         />
         {errors.message && (
-          <p
-            id="message-error"
-            role="alert"
-            style={{ color: "red", fontSize: "0.9em", margin: "0" }}
-          >
+          <p id="message-error" role="alert" className="text-brand m-0">
             {errors.message.message}
           </p>
         )}
       </div>
 
-      <button type="submit" disabled={isSubmitting}>
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="p-5 bg-brand text-background font-bold w-full text-2xl text-center md:mt-5"
+      >
         {isSubmitting ? "Sending..." : "Send"}
       </button>
       {submitError && (
-        <p role="alert" style={{ color: "red" }}>
+        <p role="alert" className="text-brand">
           {submitError}
         </p>
       )}
