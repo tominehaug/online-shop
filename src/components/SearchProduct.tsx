@@ -46,7 +46,7 @@ export default function ProductSearch({ products }: { products: Product[] }) {
         </h2>
       )}
       {searchedProducts.length > 0 ? (
-        <ul className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {searchedProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
