@@ -15,5 +15,12 @@ export default function CheckoutButton() {
     reset();
     router.push("/confirmation");
   };
-  return <button onClick={handleCheckout}>Checkout</button>;
+  return (
+    <button
+      onClick={handleCheckout}
+      className="p-5 bg-brand text-background font-bold w-full text-2xl text-center"
+    >
+      Checkout
+    </button>
+  );
 }
