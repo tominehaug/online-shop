@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 
@@ -18,6 +18,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const bebasNeue = Bebas_Neue({
+  variable: "--font-bebas-neue",
+  subsets: ["latin"],
+  weight: "400",
+});
+
 export const metadata: Metadata = {
   title: "Tretten",
   description:
@@ -28,14 +34,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${bebasNeue.variable} antialiased`}
     >
       <body className="min-h-dvh flex flex-col bg-background">
         <Suspense>
           <Header />
         </Suspense>
         <main className="flex flex-col flex-1">{children}</main>
-        <footer className="border-t-accent border-t-2 text-center p-4 w-full bg-background">
+        <footer className="border-t-accent border-t-2 text-center p-4 bg-background">
           <p>&copy; 2026 Tretten Online Store</p>
         </footer>
       </body>
