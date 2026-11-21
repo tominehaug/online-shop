@@ -65,7 +65,7 @@ export default async function SingleProductPage({
   }
 
   return (
-    <div className="max-w-xl mx-auto block lg:max-w-4xl">
+    <div className="max-w-xl mx-auto block lg:max-w-4xl md:my-10">
       <Link href="/products" className="block m-4 text-lg uppercase">
         &larr; All products
       </Link>
