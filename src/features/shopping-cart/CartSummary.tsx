@@ -22,7 +22,7 @@ function CartSummary() {
         Total items in the cart: <strong>{totalItems}</strong>
       </p>
       <p>
-        Total price: <strong>{totalPrice} NOK</strong>
+        Total price: <strong>{totalPrice.toFixed(2)} NOK</strong>
       </p>
     </div>
   );
