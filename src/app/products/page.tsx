@@ -2,37 +2,7 @@ import Link from "next/link";
 import { ApiResponseAllProducts } from "@/features/products/api.types";
 import { Product } from "@/features/products/product.types";
 import ProductSearch from "@/components/SearchProduct";
-
-const API_URL = "https://v2.api.noroff.dev/online-shop";
-
-async function getAllProducts(): Promise<ApiResponseAllProducts> {
-  const res = await fetch(API_URL, {
-    next: { revalidate: 3600 },
-  });
-
-  if (!res.ok) {
-    let errorMessage = `Could not fetch products. Status: ${res.status}`;
-
-    if (res.status === 404) {
-      errorMessage = "Products not found (404).";
-    } else {
-      try {
-        const errorData = await res.json();
-        if (
-          errorData.errors &&
-          errorData.errors[0] &&
-          errorData.errors[0].message
-        ) {
-          errorMessage = errorData.errors[0].message;
-        }
-      } catch {
-        errorMessage = `${errorMessage} ${res.statusText}`;
-      }
-    }
-    throw new Error(errorMessage);
-  }
-  return res.json();
-}
+import { getAllProducts } from "@/features/products/api";
 
 export default async function ProductsPage() {
   let products: Product[] = [];
@@ -56,7 +26,7 @@ export default async function ProductsPage() {
   }
 
   return (
-    <div className="mx-auto block lg:mt-8">
+    <div className="mx-auto w-full max-w-sm md:max-w-5xl px-2 lg:mt-8">
       <ProductSearch products={products} />
     </div>
   );

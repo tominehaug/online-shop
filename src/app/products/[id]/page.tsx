@@ -5,38 +5,7 @@ import { Product } from "@/features/products/product.types";
 import ProductDetailsCard from "@/components/ProductDetailsCard";
 import ReviewSection from "@/components/ReviewSection";
 import AddToCartButton from "@/components/AddToCartButton";
-
-const API_URL = "https://v2.api.noroff.dev/online-shop";
-
-async function getProduct(id: string): Promise<ApiResponseSingleProduct> {
-  const res = await fetch(`${API_URL}/${id}`, {
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    let errorMessage = `Could not fetch product with ID: ${id}`;
-
-    if (res.status === 404) {
-      errorMessage = "Product not found (404).";
-    } else {
-      try {
-        const errorData = await res.json();
-        if (
-          errorData.errors &&
-          errorData.errors[0] &&
-          errorData.errors[0].message
-        ) {
-          errorMessage = errorData.errors[0].message;
-        }
-      } catch {
-        errorMessage = `${errorMessage} ${res.statusText}`;
-      }
-    }
-    throw new Error(errorMessage);
-  }
-
-  return res.json();
-}
+import { getProduct } from "@/features/products/api";
 
 export default async function SingleProductPage({
   params,
